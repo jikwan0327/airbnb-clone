@@ -5,7 +5,7 @@ from . import models
 # Register your models here.
 
 @admin.register(models.User)
-class CustomUserAdmin(UserAdmin ):
+class CustomUserAdmin(UserAdmin ): #admin.site.register(models.User, CustomUserAdmin)과 같음
     
     """Cuestom User Admin"""
 
