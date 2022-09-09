@@ -40,8 +40,12 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
+THRID_PARTY_APPS = ["django-countries"]
+
 PROJECT_APP = [
-    "users.apps.UsersConfig"
+    "core.apps.CoreConfig",
+    "users.apps.UsersConfig",
+    "rooms.apps.RoomsConfig"
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APP
