@@ -55,7 +55,7 @@ class Photo(core_models.TimeStampedModel):
 
     def __str__(self):
         return self.caption
- 
+
 class Room(core_models.TimeStampedModel):
 
     """Room Model Definition"""
@@ -73,11 +73,11 @@ class Room(core_models.TimeStampedModel):
     check_in = models.TimeField()
     check_out = models.TimeField()
     instant_book = models.BooleanField(default=False)
-    host = models.ForeignKey("users.User", on_delete=models.CASCADE) #ForeignKey : 다른 어플리케이션과 연결시킴
-    room_type = models.ForeignKey("RoomType", on_delete=models.SET_NULL, null=True) #방의 한가지 유형만 선택하게 함
-    amenities = models.ManyToManyField("Amenity", blank=True)
-    facilities = models.ManyToManyField("Facility", blank=True)
-    house_rules = models.ManyToManyField("HouseRule", blank=True)
+    host = models.ForeignKey("users.User", related_name="rooms", on_delete=models.CASCADE) #ForeignKey : 다른 어플리케이션과 연결시킴
+    room_type = models.ForeignKey("RoomType", related_name="room_types" ,on_delete=models.SET_NULL, null=True) #방의 한가지 유형만 선택하게 함
+    amenities = models.ManyToManyField("Amenity",related_name="rooms", blank=True)
+    facilities = models.ManyToManyField("Facility", related_name="rooms", blank=True)
+    house_rules = models.ManyToManyField("HouseRule", related_name="rooms", blank=True)
 
     def __str__(self):
         return self.name #파란색 밑에 이름을 방이름으로 변경(원래는 Rooms Object)로 뜸
