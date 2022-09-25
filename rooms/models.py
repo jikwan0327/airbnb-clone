@@ -51,7 +51,7 @@ class Photo(core_models.TimeStampedModel):
 
     caption = models.CharField(max_length=80) #이미지 설명
     file = models.ImageField()
-    room = models.ForeignKey("Room", on_delete=models.CASCADE)
+    room = models.ForeignKey("Room", related_name="photos" ,on_delete=models.CASCADE) #related_name은 연결할 때 쓰는 이름을 지정
 
     def __str__(self):
         return self.caption
@@ -74,7 +74,7 @@ class Room(core_models.TimeStampedModel):
     check_out = models.TimeField()
     instant_book = models.BooleanField(default=False)
     host = models.ForeignKey("users.User", related_name="rooms", on_delete=models.CASCADE) #ForeignKey : 다른 어플리케이션과 연결시킴
-    room_type = models.ForeignKey("RoomType", related_name="room_types" ,on_delete=models.SET_NULL, null=True) #방의 한가지 유형만 선택하게 함
+    room_type = models.ForeignKey("RoomType", related_name="rooms" ,on_delete=models.SET_NULL, null=True) #방의 한가지 유형만 선택하게 함
     amenities = models.ManyToManyField("Amenity",related_name="rooms", blank=True)
     facilities = models.ManyToManyField("Facility", related_name="rooms", blank=True)
     house_rules = models.ManyToManyField("HouseRule", related_name="rooms", blank=True)
