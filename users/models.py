@@ -36,7 +36,7 @@ class User(AbstractUser): #유저기능 확장
     gender = models.CharField(choices=GENDER_CHOICES,max_length=10, blank=True ) #CharField에는 인자 하나가 필수임, CharField는 한줄 텍스트
 
     bio = models.TextField(blank=True) #필드 #텍스트 필드는 여러줄 텍스트
-    #blank는 required를 없애줌(필수 입력이 아니게 바꿈) 
+    #blank는 required를 없애줌(필수 입력이 아니게 바꿈)
     birthdate = models.DateField(blank=True, null=True)
     language = models.CharField(choices=LANGUAGE_CHOICES, max_length=6, blank=True)
     currency = models.CharField(choices=CURRENCY_CHOICES, max_length=3, blank=True)

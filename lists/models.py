@@ -11,3 +11,7 @@ class List(core_models.TimeStampedModel):
     
     def __str__(self):
         return self.name
+
+    def count_rooms(self):
+        return self.rooms.count()
+    count_rooms.short_description = "Number of Rooms" #list_display에 countroom이라고 되어 있는 것을 Number of Rooms로 바꿈

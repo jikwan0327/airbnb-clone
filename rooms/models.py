@@ -1,3 +1,4 @@
+from functools import total_ordering
 from tabnanny import verbose
 from django.db import models
 from django_countries.fields import CountryField
@@ -81,3 +82,10 @@ class Room(core_models.TimeStampedModel):
 
     def __str__(self):
         return self.name #파란색 밑에 이름을 방이름으로 변경(원래는 Rooms Object)로 뜸
+
+    def total_rating(self):
+        all_reviews = self.reviews.all()
+        all_ratings = 0
+        for review in all_reviews:
+            all_ratings += review.rating_average()
+        return all_ratings / len(all_reviews)
